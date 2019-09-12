@@ -1,2 +1,2 @@
 # BluExodia
-Uma Biblioteca para simplificar uso do RFID no Arduino.
+Uma Biblioteca para o Arduino para simplificar o uso do módulo RFID.
