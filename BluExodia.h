@@ -8,21 +8,24 @@
 
 class BluExodia{
   public:
-    BluExodia();
-    void Hearth();
-    void Clean(int block);
-    void ReadToSerial(int block);
-    void Write(int block, String guy);
-    void Dump();
-    int InGame();
-    String ReadToStr(int block);
-    void Readf(int block);
-    char Bufferf(int f);
-    String Hexf();
-    String Namef();
+    BluExodia(); //Instancia, não tem nenhum comando nem nada
+
+    void Hearth(); //Aplicada na void setup, inicia funções necessarias
+    void Clean(int block); //Limpa o bloco do cartão selecionado no parametro
+    void ReadToSerial(int block); //Ler o bloco selecionado no parametro e escreve no Serial
+    void Write(int block, String guy); //Escreve uma String num bloco selecionado
+    void Dump(); //Imprime cada bloco do cartão no Serial
+    int InGame(); //Função que retorno 1 se tiver um cartão no leitor e 0 no oposto
+    String ReadToStr(int block); //Retorna em String o que escrito no bloco selecionado
+
+    void Readf(int block); //Ler o bloco do cartão e armazena numa variaveis Slifer
+    char Bufferf(int f); //retorna apenas um caracter do slifer, sendo F o vetor
+    String Hexf(); //Retorna uma string com o que está armazenado em Slifer em formato Hexadecimal
+    String Namef(); //O mesmo da Hexf(de cima), mas retorna decodificado
   
   private:
-    char slifer[16];
+    char slifer[16]; //Variavel que armazena o bloco lido na função Readf
+    //As funçõs Hexf, Bufferf e Namef retornam o que está armazenado nessa variavel
 
 };
 
