@@ -22,7 +22,18 @@ class BluExodia{
     char Bufferf(int f); //retorna apenas um caracter do slifer, sendo F o vetor
     String Hexf(); //Retorna uma string com o que está armazenado em Slifer em formato Hexadecimal
     String Namef(); //O mesmo da Hexf(de cima), mas retorna decodificado
-  
+
+
+    //Os mesmos códigos de cima, porém com linhas de comando q esperam ter um cartão no leitor para seguir o código
+    //No caso, se você colocar uns do comandos de baixo no script, o arduino só avança no código se completar eles
+    //Diferente de cima, que se caso não houver cartão no modulo, ele ignora e pula o comando
+    void wClean(int block); 
+    void wReadToSerial(int block); 
+    void wWrite(int block, String guy); 
+    void wDump(); 
+    String wReadToStr(int block); 
+    void wReadf(int block); 
+
   private:
     char slifer[16]; //Variavel que armazena o bloco lido na função Readf
     //As funçõs Hexf, Bufferf e Namef retornam o que está armazenado nessa variavel
