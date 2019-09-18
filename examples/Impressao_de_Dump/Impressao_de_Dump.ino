@@ -1,6 +1,6 @@
 /*RFID  |   Impressão de Dump
  *  AUTOR: Guaxinim
- *  Código da biblioteca: https://github.com/GuaxinimRadical/BluExodia.git
+ *  Código da biblioteca: https://github.com/GuaxinimRadical/BluExodia
  *  
  * -----------------------------------------------------------------------------------------
  *             MFRC522      Arduino       Arduino   Arduino    Arduino          Arduino
