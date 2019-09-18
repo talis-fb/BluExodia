@@ -390,13 +390,12 @@ void BluExodia::wClean(int block){
   //-------------------------------------------
 
   //Detecta se tem um cartão no leitor, se sim, prosegue
+  do{
     while ( ! mfrc522.PICC_IsNewCardPresent()) {
       //Um grande e magnifico nada :)
-    }
-    // Seleciona o cartão selecionado
-    if ( ! mfrc522.PICC_ReadCardSerial()) {
-      return;
-    }
+      }
+    }while (! mfrc522.PICC_ReadCardSerial());
+    
   //-------------------------------------------
 
 
@@ -457,14 +456,13 @@ void BluExodia::wReadToSerial(int block){
   //-------------------------------------------
 
   //Detecta se tem um cartão no leitor, se sim, prosegue
-      while ( ! mfrc522.PICC_IsNewCardPresent()) {
-       //Um grande e magnifico nada :)
-      }
-      // Seleciona o cartão selecionado
-      if ( ! mfrc522.PICC_ReadCardSerial()) {
-        return;
-      }
 
+  do{
+    while ( ! mfrc522.PICC_IsNewCardPresent()) {
+      //Um grande e magnifico nada :)
+      }
+    }while (! mfrc522.PICC_ReadCardSerial());
+    
   //---------------------------------------
 
 
@@ -514,13 +512,13 @@ void BluExodia::wWrite(int block, String guy){
 
 
   //Detecta se tem um cartão no leitor, se sim, prosegue
+
+  do{
     while ( ! mfrc522.PICC_IsNewCardPresent()) {
       //Um grande e magnifico nada :)
-    }
-    // Seleciona o cartão selecionado
-    if ( ! mfrc522.PICC_ReadCardSerial()) {
-      return;
-    }
+      }
+    }while (! mfrc522.PICC_ReadCardSerial());
+    
   //-------------------------------------------
   Serial.println(F("Cartão Detectado!"));
 
@@ -578,12 +576,12 @@ void BluExodia::wWrite(int block, String guy){
 
 void BluExodia::wDump(){
   
-	while ( ! mfrc522.PICC_IsNewCardPresent()) {
+  do{
+    while ( ! mfrc522.PICC_IsNewCardPresent()) {
       //Um grande e magnifico nada :)
-    }
-	if ( ! mfrc522.PICC_ReadCardSerial()) {
-		return;
-	}
+      }
+    }while (! mfrc522.PICC_ReadCardSerial());
+    
 
 	mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
 
@@ -602,13 +600,12 @@ String BluExodia::wReadToStr(int block){
   //-------------------------------------------
 
   //Detecta se tem um cartão no leitor, se sim, prosegue
+    do{
       while ( ! mfrc522.PICC_IsNewCardPresent()) {
         //Um grande e magnifico nada :)
-      }
-      // Seleciona o cartão selecionado
-      if ( ! mfrc522.PICC_ReadCardSerial()) {
-        return;
-      }
+        }
+     }while (! mfrc522.PICC_ReadCardSerial());
+    
 
   //---------------------------------------
 
@@ -661,13 +658,13 @@ void BluExodia::wReadf(int block){
   //-------------------------------------------
 
   //Detecta se tem um cartão no leitor, se sim, prosegue
-      while ( ! mfrc522.PICC_IsNewCardPresent()) {
-        //Um grande e magnifico nada :)
-      } 
-      // Seleciona o cartão selecionado
-      if ( ! mfrc522.PICC_ReadCardSerial()) {
-        return;
+  
+  do{
+    while ( ! mfrc522.PICC_IsNewCardPresent()) {
+      //Um grande e magnifico nada :)
       }
+    }while (! mfrc522.PICC_ReadCardSerial());
+    
 
   //---------------------------------------
 
