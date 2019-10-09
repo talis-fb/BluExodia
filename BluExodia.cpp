@@ -72,11 +72,6 @@ void BluExodia::Clean(int block){
     else Serial.println(F("MIFARE_Write() success: "));
   //-------------------------------------------
 
-
-
-  //----------Bloco de encerramento
-    mfrc522.PICC_HaltA(); // Halt PICC
-    mfrc522.PCD_StopCrypto1();  // Stop encryption on PCD
   //-------------------------------------------
 
   Serial.print("Limpo");
@@ -121,9 +116,6 @@ void BluExodia::ReadToSerial(int block){
   }
   //-------------------------------------
 
-
-  mfrc522.PICC_HaltA();
-  mfrc522.PCD_StopCrypto1();
 
 }
 
@@ -174,8 +166,8 @@ void BluExodia::Write(int block, String guy){
 
 
   //----------Bloco de encerramento
-    mfrc522.PICC_HaltA(); // Halt PICC
-    mfrc522.PCD_StopCrypto1();  // Stop encryption on PCD
+    //mfrc522.PICC_HaltA(); // Halt PICC
+    //mfrc522.PCD_StopCrypto1();  // Stop encryption on PCD
   //-------------------------------------------
 
   Serial.print("Fim da Escrita");
@@ -234,8 +226,7 @@ String BluExodia::ReadToStr(int block){
   }
   //-------------------------------------
 
-    mfrc522.PICC_HaltA();
-    mfrc522.PCD_StopCrypto1();
+
 
   return guy;
 }
@@ -276,8 +267,6 @@ void BluExodia::Readf(int block){
 
   delay(100); 
 
-  mfrc522.PICC_HaltA();
-  mfrc522.PCD_StopCrypto1();
 
 }
 
@@ -621,6 +610,13 @@ void BluExodia::wReadf(int block){
   //-----------------------
 
   delay(100); 
+
+  mfrc522.PICC_HaltA();
+  mfrc522.PCD_StopCrypto1();
+
+}
+
+void BluExodia::end(){
 
   mfrc522.PICC_HaltA();
   mfrc522.PCD_StopCrypto1();

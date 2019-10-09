@@ -35,6 +35,8 @@ class BluExodia{
     String wReadToStr(int block); 
     void wReadf(int block); 
 
+    void end();
+
 
   private:
     char slifer[16]; //Variavel que armazena o bloco lido na função Readf
