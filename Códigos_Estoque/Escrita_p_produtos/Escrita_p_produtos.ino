@@ -11,20 +11,25 @@ void setup() {
 }
 
 void loop() {
-  product = "Feijão";
-  val = "10";
+  product = "Chocolate";
+  val = "4";
   String moeda = "Reais";
-
+  
+  guy.In();
+  
   //Nome do produto
-  guy.wWrite(10,product);
+  guy.Write(62,product);
   Serial.println("Produto Escrito");
 
   //Valor do produto
-  guy.wWrite(8,val);
+  guy.Write(61,val);
   Serial.println("Valor do produto Escrito");
 
-  //Moeda utilizada
-  guy.wWrite(9,moeda); 
+  //Moeda utilizado
+  guy.Write(60,moeda); 
+  guy.end();
+
+  
   Serial.println("Unidade da Moeda Escrita");
 
   Serial.println("\nRFID Pronto :)");
