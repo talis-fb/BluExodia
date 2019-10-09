@@ -5,6 +5,9 @@
   
 MFRC522 mfrc522(SS_PIN, RST_PIN); 
 
+MFRC522::MIFARE_Key key;
+MFRC522::StatusCode status;
+
 BluExodia::BluExodia(){
    
 }
@@ -17,26 +20,25 @@ void BluExodia::Hearth(){
 
 }
 
+void BluExodia::In(){
+
+  do{
+    while ( ! mfrc522.PICC_IsNewCardPresent()) {
+      //Um grande e magnifico nada :)
+      }
+    }while (! mfrc522.PICC_ReadCardSerial());
+    
+    return;
+
+}
+
 void BluExodia::Clean(int block){
 
   //Preparação para chave
-    MFRC522::MIFARE_Key key;
     for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
   //-------------------------------------------
 
-  //Detecta se tem um cartão no leitor, se sim, prosegue
-    if ( ! mfrc522.PICC_IsNewCardPresent()) {
-      return;
-    }
-    // Seleciona o cartão selecionado
-    if ( ! mfrc522.PICC_ReadCardSerial()) {
-      return;
-    }
-  //-------------------------------------------
-
-
   //Variaveis necessárias
-    MFRC522::StatusCode status;
     byte buffer[34];
     byte len;
 
@@ -82,26 +84,12 @@ void BluExodia::Clean(int block){
 
 void BluExodia::ReadToSerial(int block){
   //Preparação para chave
-    MFRC522::MIFARE_Key key;
      for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
 
     //Variaveis q ira se precisar
-    MFRC522::StatusCode status;
     byte len;
 
   //-------------------------------------------
-
-  //Detecta se tem um cartão no leitor, se sim, prosegue
-      if ( ! mfrc522.PICC_IsNewCardPresent()) {
-        return;
-      }
-      // Seleciona o cartão selecionado
-      if ( ! mfrc522.PICC_ReadCardSerial()) {
-        return;
-      }
-
-  //---------------------------------------
-
 
   len = 18; //Aparentemente len deve ser igual ao tamanho dos Buffers
   
@@ -133,7 +121,6 @@ void BluExodia::ReadToSerial(int block){
   }
   //-------------------------------------
 
-  delay(500); 
 
   mfrc522.PICC_HaltA();
   mfrc522.PCD_StopCrypto1();
@@ -143,26 +130,10 @@ void BluExodia::ReadToSerial(int block){
 void BluExodia::Write(int block, String guy){
   
   //Preparação para chave
-    MFRC522::MIFARE_Key key;
     for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
   //-------------------------------------------
 
-
-  //Detecta se tem um cartão no leitor, se sim, prosegue
-    if ( ! mfrc522.PICC_IsNewCardPresent()) {
-      return;
-    }
-    // Seleciona o cartão selecionado
-    if ( ! mfrc522.PICC_ReadCardSerial()) {
-      return;
-    }
-  //-------------------------------------------
-  Serial.println(F("Cartão Detectado!"));
-
-
-
   //Variaveis necessárias
-    MFRC522::StatusCode status;
     byte buffer[34];
     byte len;
 
@@ -212,13 +183,7 @@ void BluExodia::Write(int block, String guy){
 }
 
 void BluExodia::Dump(){
-  
-	if ( ! mfrc522.PICC_IsNewCardPresent()) {
-		return;
-	}
-	if ( ! mfrc522.PICC_ReadCardSerial()) {
-		return;
-	}
+ 
 
 	mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
 
@@ -233,26 +198,12 @@ int BluExodia::InGame(){
 String BluExodia::ReadToStr(int block){
 
   //Preparação para chave
-    MFRC522::MIFARE_Key key;
      for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
 
     //Variaveis q ira se precisar
-    MFRC522::StatusCode status;
     byte len;
 
   //-------------------------------------------
-
-  //Detecta se tem um cartão no leitor, se sim, prosegue
-      if ( ! mfrc522.PICC_IsNewCardPresent()) {
-        return;
-      }
-      // Seleciona o cartão selecionado
-      if ( ! mfrc522.PICC_ReadCardSerial()) {
-        return;
-      }
-
-  //---------------------------------------
-
 
   len = 18; //Aparentemente len deve ser igual ao tamanho dos Buffers
   
@@ -292,26 +243,12 @@ String BluExodia::ReadToStr(int block){
 void BluExodia::Readf(int block){
 
   //Preparação para chave
-    MFRC522::MIFARE_Key key;
      for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
 
     //Variaveis q ira se precisar
-    MFRC522::StatusCode status;
     byte len;
 
   //-------------------------------------------
-
-  //Detecta se tem um cartão no leitor, se sim, prosegue
-      if ( ! mfrc522.PICC_IsNewCardPresent()) {
-        return;
-      }
-      // Seleciona o cartão selecionado
-      if ( ! mfrc522.PICC_ReadCardSerial()) {
-        return;
-      }
-
-  //---------------------------------------
-
 
   len = 18; //Aparentemente len deve ser igual ao tamanho dos Buffers
   
@@ -385,7 +322,6 @@ String BluExodia::Namef(){
 void BluExodia::wClean(int block){
 
   //Preparação para chave
-    MFRC522::MIFARE_Key key;
     for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
   //-------------------------------------------
 
@@ -400,7 +336,6 @@ void BluExodia::wClean(int block){
 
 
   //Variaveis necessárias
-    MFRC522::StatusCode status;
     byte buffer[34];
     byte len;
 
@@ -446,11 +381,9 @@ void BluExodia::wClean(int block){
 
 void BluExodia::wReadToSerial(int block){
   //Preparação para chave
-    MFRC522::MIFARE_Key key;
      for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
 
     //Variaveis q ira se precisar
-    MFRC522::StatusCode status;
     byte len;
 
   //-------------------------------------------
@@ -506,7 +439,6 @@ void BluExodia::wReadToSerial(int block){
 void BluExodia::wWrite(int block, String guy){
   
   //Preparação para chave
-    MFRC522::MIFARE_Key key;
     for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
   //-------------------------------------------
 
@@ -525,7 +457,6 @@ void BluExodia::wWrite(int block, String guy){
 
 
   //Variaveis necessárias
-    MFRC522::StatusCode status;
     byte buffer[34];
     byte len;
 
@@ -590,11 +521,9 @@ void BluExodia::wDump(){
 String BluExodia::wReadToStr(int block){
 
   //Preparação para chave
-    MFRC522::MIFARE_Key key;
      for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
 
     //Variaveis q ira se precisar
-    MFRC522::StatusCode status;
     byte len;
 
   //-------------------------------------------
@@ -648,11 +577,9 @@ String BluExodia::wReadToStr(int block){
 void BluExodia::wReadf(int block){
 
   //Preparação para chave
-    MFRC522::MIFARE_Key key;
      for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
 
     //Variaveis q ira se precisar
-    MFRC522::StatusCode status;
     byte len;
 
   //-------------------------------------------
@@ -699,3 +626,4 @@ void BluExodia::wReadf(int block){
   mfrc522.PCD_StopCrypto1();
 
 }
+

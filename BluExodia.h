@@ -11,6 +11,7 @@ class BluExodia{
     BluExodia(); //Instancia, não tem nenhum comando nem nada
 
     void Hearth(); //Aplicada na void setup, inicia funções necessarias
+    void In();
     void Clean(int block); //Limpa o bloco do cartão selecionado no parametro
     void ReadToSerial(int block); //Ler o bloco selecionado no parametro e escreve no Serial
     void Write(int block, String guy); //Escreve uma String num bloco selecionado
@@ -33,6 +34,7 @@ class BluExodia{
     void wDump(); 
     String wReadToStr(int block); 
     void wReadf(int block); 
+
 
   private:
     char slifer[16]; //Variavel que armazena o bloco lido na função Readf
