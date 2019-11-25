@@ -83,7 +83,10 @@ void telaInf(){
 }
 
 void loop() {
-  botao = digitalRead(but);
+
+  //guy.In();
+  
+  //botao = digitalRead(but);
   
   lcd.clear();
     //Serial.print("\n----------------\n");
@@ -103,9 +106,13 @@ void loop() {
       *Cada produto novo se registrará como um novo vetor no EstoqProd[] 
       *e caso outro igual passe, apenas cont[] se somará mais 1.*/
 
+  guy.In();
+  
+  botao = digitalRead(but);
+  
       if(botao==LOW){
 
-        guy.In();
+        //guy.In();
         
         guy.Readf(62);
         String tProd = guy.Namef();
@@ -122,7 +129,7 @@ void loop() {
         lcd.print((String)"Preco:" + tVal);
 
         //tProd.replace(" ","");
-        Serial.print("http://rizes.tech/RFID/compra.php?nome=");
+        Serial.print("http://192.168.43.144/RFID/compra.php?nome=");
         Serial.println(tProd);
      
         guy.end();
@@ -134,7 +141,7 @@ void loop() {
     } else{
 
       //Bloco que ler o cartão no leitor e guarda a leitura dos blocos em variaveis temporariais
-        guy.In();
+        //guy.In();
         
         guy.Readf(62);
         String tProd = guy.Namef();
@@ -147,10 +154,21 @@ void loop() {
         
       //----------------------
 
-      Serial.print("http://rizes.tech/RFID/quantidade.php?nome=");
+      Serial.print("http://192.168.43.144/RFID/quantidade.php?nome=");
       Serial.println(tProd);
 
+      int aux = 0;
+      while(!Serial.available())
+      {
+        delay(1);
+        aux++;
+        if (aux > 4000)
+          break;
+      }
+
       int quantidade = 0;
+      if (Serial.available())
+        quantidade = Serial.read();
 
       lcd.clear();
       lcd.print((String)"Produto: "+tProd);
